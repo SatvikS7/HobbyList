@@ -21,4 +21,20 @@ public record PhotoDto(
     public PhotoDto(Long id, String topic, String imageUrl, String description, LocalDateTime uploadDate, List<Long> taggedMilestoneIds) {
         this(id, topic, imageUrl, null, null, null, description, taggedMilestoneIds, uploadDate);
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

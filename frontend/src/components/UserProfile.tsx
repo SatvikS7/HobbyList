@@ -214,6 +214,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
                 <PhotoSection 
                   photos={!isSelf ? (profile.photos || []) : undefined} 
                   milestones={!isSelf ? (profile.milestones || []) : undefined}
+                  isReadOnly={!isSelf}
                 />
             )}
 

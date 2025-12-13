@@ -75,6 +75,11 @@ public class FollowService {
 
     @Transactional
     public void unfollowUser(User requester, User target) {
+
+        if (requester.getId() == target.getId()) {
+            throw new IllegalArgumentException("You cannot unfollow yourself.");
+        }
+
         if (isFollowing(requester, target)) {
             target.getFollowers().remove(requester);
             requester.getFollowing().remove(target);
@@ -87,7 +92,8 @@ public class FollowService {
             if (existingRequest.isPresent()
                     && existingRequest.get().getStatus() == FollowRequest.RequestStatus.PENDING) {
                 followRequestRepository.delete(existingRequest.get());
-
+            } else {
+                throw new IllegalArgumentException("You do not follow nor have requested to follow this user.");
             }
         }
     }
@@ -98,14 +104,9 @@ public class FollowService {
                 .findByRequesterAndTargetAndStatus(requester, target, FollowRequest.RequestStatus.PENDING)
                 .orElseThrow(() -> new IllegalArgumentException("Request not found"));
 
-        if (request.getTarget().getId() != target.getId()) {
-            throw new IllegalStateException("Not authorized to accept this request");
-        }
-
         if (request.getStatus() != FollowRequest.RequestStatus.PENDING) {
             throw new IllegalStateException("Request is not pending");
         }
-        System.out.println("IM HERE");
         request.setStatus(FollowRequest.RequestStatus.ACCEPTED);
         followRequestRepository.save(request);
 
@@ -122,12 +123,9 @@ public class FollowService {
 
     @Transactional
     public void rejectRequest(User requester, User target) {
-        FollowRequest request = followRequestRepository.findByRequesterAndTarget(requester, target)
+        FollowRequest request = followRequestRepository
+                .findByRequesterAndTargetAndStatus(requester, target, FollowRequest.RequestStatus.PENDING)
                 .orElseThrow(() -> new IllegalArgumentException("Request not found"));
-
-        if (request.getTarget().getId() != target.getId()) {
-            throw new IllegalStateException("Not authorized to reject this request");
-        }
 
         request.setStatus(FollowRequest.RequestStatus.REJECTED);
         followRequestRepository.save(request);

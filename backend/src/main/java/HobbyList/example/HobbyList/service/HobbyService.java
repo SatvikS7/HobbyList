@@ -12,7 +12,7 @@ public class HobbyService {
 
     public void addHobbyToUser(User user, String hobby) {
         if (hobby == null || hobby.isBlank()) {
-            return;
+            throw new IllegalArgumentException("Hobby cannot be null or blank");
         }
 
         String normalized = hobby.trim().toLowerCase();

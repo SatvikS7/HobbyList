@@ -41,6 +41,8 @@ public class PhotoService {
     }
 
     public PhotoDto toDto(Photo photo, String imageUrl) {
+        //System.out.println("Image URL: " + imageUrl);
+        //System.out.println("Image URL Substring: " + imageUrl.substring(imageUrl.indexOf("photos/")));
         String preSignedUrl = s3Service.generateDownloadUrl("hobbylist-photos", imageUrl.substring(imageUrl.indexOf("photos/")));
         return new PhotoDto(
             photo.getId(),

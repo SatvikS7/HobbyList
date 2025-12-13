@@ -39,8 +39,8 @@ spring:
             enable: true
             required: true
 jwt:
-  secret: myVeryLongAndSecureSecretKeyThatIsAtLeast256BitsLongForHS256AlgorithmSecurity
-  expiration: 86400000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
 logging:
   level:
     '[org.springframework.web]': DEBUG

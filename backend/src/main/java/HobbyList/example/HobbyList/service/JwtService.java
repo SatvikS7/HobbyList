@@ -12,14 +12,21 @@ import java.util.Date;
 @Service
 public class JwtService {
     
-    // Use application.properties for secret key
-    @Value("${jwt.secret:myDefaultSecretKeyThatIsAtLeast256BitsLongForHS256Algorithm}")
     private String SECRET_KEY;
-    
-    @Value("${jwt.expiration:86400000}") // 24 hours in milliseconds
     private long EXPIRATION_TIME;
 
+    public JwtService(
+        @Value("${jwt.secret}") String SECRET_KEY,
+        @Value("${jwt.expiration}") long EXPIRATION_TIME
+    ) {
+        this.SECRET_KEY = SECRET_KEY;
+        this.EXPIRATION_TIME = EXPIRATION_TIME;
+    }
+
     public String generateToken(User user) {
+        if (user.getEmail() == null) {
+            throw new IllegalArgumentException("User email cannot be null");
+        }
         try {
             return Jwts.builder()
                 .setSubject(user.getEmail())
