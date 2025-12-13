@@ -8,7 +8,6 @@ import VerificationPage from './pages/VerificationPage';
 import PasswordResetForm from './pages/PasswordResetForm';
 import PasswordReset from './pages/PasswordReset';
 import HomePage from './pages/HomePage';
-import UploadPhoto from './pages/UploadPhoto';
 import Header from './components/Header';
 import ProfilePage from './pages/ProfilePage';
 import DiscoveryPage from './pages/DiscoveryPage';
@@ -27,7 +26,6 @@ function App() {
         <Route path="/password-reset" element={<PasswordReset />} />
         <Route path="/reset-password" element={<PasswordResetForm />} />
         <Route path="/home-page" element={<HomePage />} />
-        <Route path="/upload-photo" element={<UploadPhoto />} />
         <Route path="/profile-page" element={<ProfilePage />} />
         <Route path="/discovery-page" element={<DiscoveryPage />} />
         <Route path="/onboarding-page" element={<Onboarding />} />

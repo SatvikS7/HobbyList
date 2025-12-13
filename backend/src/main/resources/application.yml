@@ -39,8 +39,8 @@ spring:
             enable: true
             required: true
 jwt:
-  secret: 63a6dd5fb4b39babe0e489dd510570bef791cf990c594af4642a99683afb030e
-  expiration: 86400000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
 logging:
   level:
     '[org.springframework.web]': DEBUG
