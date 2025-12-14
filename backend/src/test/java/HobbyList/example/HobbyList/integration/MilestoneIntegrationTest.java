@@ -36,6 +36,7 @@ public class MilestoneIntegrationTest extends BaseIntegrationTest {
 
     @BeforeEach
     void setUp() {
+        followRequestRepository.deleteAll();
         tokenRepository.deleteAll();
         milestoneRepository.deleteAll();
         userRepository.deleteAll();

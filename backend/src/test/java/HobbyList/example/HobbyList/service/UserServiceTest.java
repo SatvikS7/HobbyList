@@ -3,11 +3,9 @@ package HobbyList.example.HobbyList.service;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,14 +19,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import HobbyList.example.HobbyList.dto.MilestoneDto;
-import HobbyList.example.HobbyList.dto.PhotoDto;
 import HobbyList.example.HobbyList.dto.ProfileDto;
 import HobbyList.example.HobbyList.dto.UserSummaryDto;
 import HobbyList.example.HobbyList.dto.UserSummaryProjection;
 import HobbyList.example.HobbyList.model.User;
-import HobbyList.example.HobbyList.model.Milestone;
-import HobbyList.example.HobbyList.model.Photo;
 import HobbyList.example.HobbyList.repository.MilestoneRepository;
 import HobbyList.example.HobbyList.repository.PhotoRepository;
 import HobbyList.example.HobbyList.repository.UserRepository;

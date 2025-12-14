@@ -1,9 +1,5 @@
 package HobbyList.example.HobbyList.service;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,30 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Value;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import HobbyList.example.HobbyList.repository.FollowRequestRepository;
-import HobbyList.example.HobbyList.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import HobbyList.example.HobbyList.model.User;
-import HobbyList.example.HobbyList.dto.UserSummaryDto;
-import HobbyList.example.HobbyList.dto.UserSummaryProjection;
-import HobbyList.example.HobbyList.model.FollowRequest;
 
 @ExtendWith(MockitoExtension.class)
 public class JwtServiceTest {
@@ -141,8 +123,6 @@ public class JwtServiceTest {
     void generateToken_ShouldThrowException_WhenUserEmailIsNull() {
         User badUser = new User();
         badUser.setEmail(null);
-
-        System.out.println("email: " + badUser.getEmail());
 
         assertThrows(IllegalArgumentException.class, () -> jwtService.generateToken(badUser));
     }

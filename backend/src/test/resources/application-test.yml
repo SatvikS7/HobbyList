@@ -3,7 +3,10 @@ server:
     include-message: always
     include-binding-errors: always
 
+DB_DIALECT: org.hibernate.dialect.H2Dialect
+
 spring:
+  config.activate.on-profile: test
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
     username: sa
@@ -29,11 +32,11 @@ spring:
             enable: false
   
   application:
-    name: users # Matches application.yml just in case
+    name: users 
 
 FRONTEND_URL: http://localhost:3000
 jwt:
-  secret: ${JWT_SECRET:test-jwt-secret}
+  secret: testy9t8p4vH1QJz5V+6K9d8jXQ4w7s1aL2fE8Ghtest
   expiration: 86400000
 
 logging:
