@@ -1,0 +1,43 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+
+  mail:
+    host: disabled
+    port: 0
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+  
+  application:
+    name: users # Matches application.yml just in case
+
+FRONTEND_URL: http://localhost:3000
+jwt:
+  secret: ${JWT_SECRET:test-jwt-secret}
+  expiration: 86400000
+
+logging:
+  level:
+    root: WARN
+    org.springframework.web: ERROR
+    HobbyList.example.HobbyList: INFO
