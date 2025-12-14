@@ -33,4 +33,3 @@ build/
 .vscode/
 *.env
 *.properties
-src/test/resources/application-test.yml
