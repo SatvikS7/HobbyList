@@ -23,5 +23,6 @@ jobs:
           java-version: 17
           cache: maven
 
-      - name: Run tests
+      - name: Run backend tests
+        working-directory: backend
         run: mvn test
