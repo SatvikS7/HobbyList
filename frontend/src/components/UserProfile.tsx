@@ -27,6 +27,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
   const profile = isSelf ? selfProfile : otherProfile;
 
   useEffect(() => {
+    console.log("userId", userId);
     if (isSelf) {
       getProfile();
     } else if (userId) {
@@ -223,6 +224,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
                     milestones={!isSelf ? (profile.milestones || []) : undefined} 
                     photos={!isSelf ? (profile.photos || []) : undefined}
                     isReadOnly={!isSelf} 
+                    userId={isSelf ? selfProfile?.id : userId}
                 />
             )}
           </div>

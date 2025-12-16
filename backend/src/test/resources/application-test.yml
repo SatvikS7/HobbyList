@@ -36,7 +36,7 @@ spring:
 
 FRONTEND_URL: http://localhost:3000
 jwt:
-  secret: testy9t8p4vH1QJz5V+6K9d8jXQ4w7s1aL2fE8Ghtest
+  secret: testtesttesttesttesttesttesttesttesttesttest
   expiration: 86400000
 
 logging:
