@@ -12,6 +12,7 @@ import Header from './components/Header';
 import ProfilePage from './pages/ProfilePage';
 import DiscoveryPage from './pages/DiscoveryPage';
 import Onboarding from './pages/OnboardingPage';
+import MilestoneTreePage from './pages/MilestoneTreePage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profile-page" element={<ProfilePage />} />
         <Route path="/discovery-page" element={<DiscoveryPage />} />
         <Route path="/onboarding-page" element={<Onboarding />} />
+        <Route path="/milestone-tree" element={<MilestoneTreePage />} />
       </Routes>
     </div>
   )

@@ -23,18 +23,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final TokenRepository tokenRepository;
     private final ApplicationEventPublisher eventPublisher;
 
-    public AuthController(UserRepository userRepository, 
-                         PasswordEncoder passwordEncoder,
-                         JwtService jwtService,
-                         TokenRepository tokenRepository,
-                         ApplicationEventPublisher eventPublisher) {
+    public AuthController(UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            JwtService jwtService,
+            TokenRepository tokenRepository,
+            ApplicationEventPublisher eventPublisher) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
@@ -47,11 +47,12 @@ public class AuthController {
         // Check if email already exists
         User user = userRepository.findByEmail(request.email()).orElse(null);
         if (user != null) {
-            if (user.isEnabled()) {
+            if (user.isActive()) {
                 return ResponseEntity.badRequest().body(Map.of("error", "Email in use"));
             } else {
                 // Resend Email
                 eventPublisher.publishEvent(new VerificationEmailEvent(user, "EMAIL_VERIFICATION"));
+                return ResponseEntity.ok(Map.of("message", "Verification email resent"));
             }
         }
 
@@ -70,17 +71,17 @@ public class AuthController {
         Optional<User> optionalUser = userRepository.findByEmail(request.email());
         if (optionalUser.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                   .body(Map.of("error", "Invalid email or password"));
+                    .body(Map.of("error", "Invalid email or password"));
         }
         User user = optionalUser.get();
-        if(!user.isActive()) {
+        if (!user.isActive()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("error", "Account not activated"));
+                    .body(Map.of("error", "Account not activated"));
         }
 
-        if(!passwordEncoder.matches(request.password(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.password(), user.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("error", "Invalid email or password"));
+                    .body(Map.of("error", "Invalid email or password"));
         }
         boolean newAcct = user.isNewAccount();
         user.setOld();
@@ -98,7 +99,7 @@ public class AuthController {
         }
 
         User user = verificationToken.get().getUser();
-        //User user = userRepository.findById(userId).orElse(null);
+        // User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
             return ResponseEntity.badRequest().body(Map.of("error", "User not found"));
         }

@@ -7,16 +7,20 @@ import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { type MilestoneDto, type PhotoDto } from "../types";
 
+import { useNavigate } from "react-router-dom";
+
 interface MilestoneSectionProps {
   milestones?: MilestoneDto[];
   photos?: PhotoDto[];
   isReadOnly?: boolean;
+  userId?: number|null;
 }
 
 function MilestoneSection({ 
   milestones: propMilestones, 
   photos: propPhotos, 
-  isReadOnly = false 
+  isReadOnly = false,
+  userId
 }: MilestoneSectionProps) {
   const { 
     milestones: contextMilestones, 
@@ -24,6 +28,8 @@ function MilestoneSection({
     photos: contextPhotos, 
     invalidatePhotos
   } = usePhotoMilestone();
+  
+  const navigate = useNavigate();
   
   // Use props if available, otherwise fallback to context
   const milestones = propMilestones || contextMilestones;
@@ -108,11 +114,27 @@ function MilestoneSection({
       if (filterStatus === "ALL") return true;
       if (filterStatus === "COMPLETED") return m.completed;
       if (filterStatus === "PENDING") return !m.completed;
+      
       return true;
     });
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <div className="flex justify-end mb-4">
+        <button
+            onClick={() => {
+                const url = userId ? `/milestone-tree?userId=${userId}` : '/milestone-tree';
+                navigate(url);
+            }}
+            className="flex items-center gap-2 text-[#b99547] font-semibold hover:text-[#a07f36] transition-colors border border-[#b99547] px-4 py-2 rounded-lg hover:bg-[#b99547]/10"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z" />
+            </svg>
+            View Milestone Tree
+        </button>
+      </div>
+
       {!isReadOnly && (
         <div className="mb-8">
           <button
