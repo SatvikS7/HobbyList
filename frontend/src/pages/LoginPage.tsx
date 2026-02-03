@@ -105,7 +105,7 @@ function LoginPage() {
             Don't have an account? <Link to="/signup">Sign up</Link>
           </p>
           <p>
-            <Link to="/reset-password">Forgot Password?</Link>
+            <Link to="/password-reset">Forgot Password?</Link>
           </p>
         </div>
       </div>
