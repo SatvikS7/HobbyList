@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { usePhotoMilestone } from "../contexts/PhotoMilestoneContext";
 import { useProfile } from "../contexts/ProfileContext";
-import PhotoCard from "./PhotoCard";
+//import PhotoCard from "./PhotoCard";
 import { milestoneService } from "../services/milestoneService";
 import toast from "react-hot-toast";
 import { type MilestoneDto, type PhotoDto } from "../types";
@@ -15,7 +15,7 @@ interface MilestoneCardProps {
 }
 
 const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone, onClose, onDelete, isReadOnly = false, photos }) => {
-  const { milestoneMap, photoMap, refreshMilestones, photos: contextPhotos, invalidatePhotos } = usePhotoMilestone();
+  const { milestoneMap, photoMap, refreshMilestones, invalidatePhotos } = usePhotoMilestone();
   const { profile } = useProfile();
   const [selectedPhotoId, setSelectedPhotoId] = useState<number | null>(null);
 
@@ -179,7 +179,7 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone, onClose, onDel
       </ul>
     );
   };
-  const selectedPhoto = selectedPhotoId ? photoMap.get(selectedPhotoId) : null;
+  //const selectedPhoto = selectedPhotoId ? photoMap.get(selectedPhotoId) : null;
   const currentPercentage = (milestoneMap.get(milestone.id)?.completionRate ?? 0) * 100;
 
   return (

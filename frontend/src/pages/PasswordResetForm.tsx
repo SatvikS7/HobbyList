@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 const API_BASE = import.meta.env.VITE_BACKEND_BASE;
 
