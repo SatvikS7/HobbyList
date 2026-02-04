@@ -17,7 +17,7 @@ interface MilestoneCardProps {
 const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone, onClose, onDelete, isReadOnly = false, photos }) => {
   const { milestoneMap, photoMap, refreshMilestones, invalidatePhotos } = usePhotoMilestone();
   const { profile } = useProfile();
-  const [selectedPhotoId, setSelectedPhotoId] = useState<number | null>(null);
+  const [, setSelectedPhotoId] = useState<number | null>(null);
 
   // Edit Mode State
   const [isEditing, setIsEditing] = useState(false);
