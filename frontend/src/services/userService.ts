@@ -1,5 +1,5 @@
 import { api } from './api';
-import { type UserSummaryDto, type ProfileDto } from '../types';
+import { type UserSummaryDto} from '../types';
 
 export const userService = {
     getDiscoveryUsers: async (): Promise<UserSummaryDto[]> => {

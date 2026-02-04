@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const API_BASE = import.meta.env.VITE_BACKEND_BASE;
 
@@ -23,7 +23,6 @@ function PasswordReset() {
                 throw new Error("Failed to send password reset email");
             }
 
-            const data = await response.json();
             setStatus("Password reset email sent successfully!");
             setTimeout(() => {
                 navigate("/password-reset");

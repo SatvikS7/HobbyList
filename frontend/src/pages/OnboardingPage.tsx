@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { profileService } from "../services/profileService";
 
 
-const API_BASE = import.meta.env.VITE_BACKEND_BASE;
 
 const Onboarding: React.FC = () => {
-    const token = sessionStorage.getItem("jwt");
     const [step, setStep] = useState<"username" | "hobbies">("username");
     const [username, setUsername] = useState("");
     const [selectedHobbies, setSelectedHobbies] = useState<string[]>([]);
