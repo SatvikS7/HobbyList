@@ -2,6 +2,7 @@ server:
   error:
     include-message: always
     include-binding-errors: always
+  port: ${PORT:8080}
 
 DB_DRIVER_CLASS: ${DB_DRIVER_CLASS}
 DB_BASE_URL: ${DB_BASE_URL}
