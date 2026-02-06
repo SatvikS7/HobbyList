@@ -15,7 +15,7 @@ spring:
   application:
     name: users
   datasource:
-    url: jdbc:postgresql://localhost:5432/users
+    url: ${DB_BASE_URL}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: ${DB_DRIVER_CLASS}
