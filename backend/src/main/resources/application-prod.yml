@@ -27,18 +27,12 @@ spring:
         dialect: ${DB_DIALECT}
         format_sql: true
     show-sql: false
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${EMAIL_USER}
-    password: ${EMAIL_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
+
+  
+resend:
+  api:
+    key: ${RESEND_API_KEY}
+
 jwt:
   secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION}
