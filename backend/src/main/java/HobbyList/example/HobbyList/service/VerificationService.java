@@ -33,6 +33,10 @@ public class VerificationService {
         tokenRepository.save(verificationToken);
         String compositeUrl = "";
 
+        if (!frontendUrl.endsWith("/")) {
+            frontendUrl += "/";
+        }
+
         if (type.equals("EMAIL_VERIFICATION")) {
             compositeUrl = frontendUrl + "verification?token=" + token;
         } else if (type.equals("PASSWORD_RESET")) {
