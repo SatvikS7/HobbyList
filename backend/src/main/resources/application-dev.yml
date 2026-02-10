@@ -36,6 +36,7 @@ resend:
 jwt:
   secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION}
+  
 logging:
   level:
     '[org.springframework.web]': DEBUG
